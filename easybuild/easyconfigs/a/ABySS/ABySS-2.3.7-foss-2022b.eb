@@ -1,0 +1,31 @@
+easyblock = 'ConfigureMake'
+
+name = 'ABySS'
+version = '2.3.7'
+
+homepage = 'http://www.bcgsc.ca/platform/bioinfo/software/abyss'
+description = """Assembly By Short Sequences - a de novo, parallel, paired-end sequence assembler"""
+
+toolchain = {'name': 'foss', 'version': '2022b'}
+toolchainopts = {'usempi': True}
+
+source_urls = ['https://github.com/bcgsc/abyss/releases/download/%(version)s/']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['cdfab7d1c111037c4ef465fbfdab302d']
+
+dependencies = [
+    ('Boost', '1.81.0'),
+    ('sparsehash', '2.0.4'),
+    ('SQLite', '3.39.4'),
+    ('btllib', '1.6.0'),
+]
+
+#configopts = 'CFLAGS="$CFLAGS -Wno-error=deprecated-copy"'
+configopts = 'CXXFLAGS="$CXXFLAGS -Wno-error=deprecated-copy"'
+
+sanity_check_paths = {
+    'files': ["bin/ABYSS", "bin/ABYSS-P"],
+    'dirs': []
+}
+
+moduleclass = 'bio'
